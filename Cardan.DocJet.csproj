@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7D4592A4-F261-423C-8DAE-1522B0260A58}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cardan.DocJet</RootNamespace>
+    <AssemblyName>Cardan.DocJet</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Cardan.DocJet.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenXmlPowerTools">
+      <HintPath>packages\OpenXmlPowerTools.3.0.0\lib\OpenXmlPowerTools.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Chart\AbstractPlot.cs" />
+    <Compile Include="Chart\ChartEnums.cs" />
+    <Compile Include="Chart\ChartStyler.cs" />
+    <Compile Include="Chart\Scaling.cs" />
+    <Compile Include="Chart\SeriesData.cs" />
+    <Compile Include="Chart\Shape.cs" />
+    <Compile Include="Chart\XChartStyleTemplate.cs" />
+    <Compile Include="Chart\XChartSpace.cs" />
+    <Compile Include="Chart\ChartStyles.cs" />
+    <Compile Include="Chart\ChartTemplate.cs" />
+    <Compile Include="Chart\XMarker.cs" />
+    <Compile Include="Chart\Series.cs" />
+    <Compile Include="Chart\SeriesExtensions.cs" />
+    <Compile Include="Chart\ValueAxis.cs" />
+    <Compile Include="Chart\XChart.cs" />
+    <Compile Include="Chart\XPlot.cs" />
+    <Compile Include="Chart\XPlotArea.cs" />
+    <Compile Include="Chart\XScatter.cs" />
+    <Compile Include="Data\LNode.cs" />
+    <Compile Include="Doc.cs" />
+    <Compile Include="Extensions\NumberingDefPartExtensions.cs" />
+    <Compile Include="Extensions\XElementExt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\BulletHelper.cs" />
+    <Compile Include="Helper\ChartHelper.cs" />
+    <Compile Include="Helper\DataHelper.cs" />
+    <Compile Include="Helper\ElementSorter.cs" />
+    <Compile Include="Helper\IdGenerator.cs" />
+    <Compile Include="Helper\PageSizes.cs" />
+    <Compile Include="Helper\PageWidth.cs" />
+    <Compile Include="Maps\BlankDisplays.cs" />
+    <Compile Include="Maps\Crosses.cs" />
+    <Compile Include="Maps\JetMap.cs" />
+    <Compile Include="Maps\LineCaps.cs" />
+    <Compile Include="Maps\Orientations.cs" />
+    <Compile Include="Maps\ScatterStyles.cs" />
+    <Compile Include="Maps\TickLabelPositions.cs" />
+    <Compile Include="Maps\TickMarks.cs" />
+    <Compile Include="Math\Var.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Section\DJSection.cs" />
+    <Compile Include="Section\Margin.cs" />
+    <Compile Include="Section\Margins.cs" />
+    <Compile Include="Section\Orientation.cs" />
+    <Compile Include="Section\Orientations.cs" />
+    <Compile Include="Section\PageSizes.cs" />
+    <Compile Include="Styles\BasicElegant.cs" />
+    <Compile Include="Styles\BasicSimple.cs" />
+    <Compile Include="Styles\BasicStylish.cs" />
+    <Compile Include="Styles\BWCapitalized.cs" />
+    <Compile Include="Styles\BWClassic.cs" />
+    <Compile Include="Styles\Casual.cs" />
+    <Compile Include="Styles\Centered.cs" />
+    <Compile Include="Styles\LinesDistinctive.cs" />
+    <Compile Include="Styles\LinesSimple.cs" />
+    <Compile Include="Styles\LinesStylish.cs" />
+    <Compile Include="Styles\Minimalist.cs" />
+    <Compile Include="Styles\SchemeColors.cs" />
+    <Compile Include="Styles\Shaded.cs" />
+    <Compile Include="Styles\Themes.cs" />
+    <Compile Include="Styles\Word2003.cs" />
+    <Compile Include="Styles\Word2010.cs" />
+    <Compile Include="Styles\Word2013.cs" />
+    <Compile Include="Styles\Word2013BW.cs" />
+    <Compile Include="Maps\CompoundLineTypes.cs" />
+    <Compile Include="XML\JetElement.cs" />
+    <Compile Include="XML\LevelJustification.cs" />
+    <Compile Include="Helper\ListFormat.cs" />
+    <Compile Include="Helper\NodeFormat.cs" />
+    <Compile Include="XML\NumberFormat.cs" />
+    <Compile Include="Helper\ParStyles.cs" />
+    <Compile Include="Helper\Reference.cs" />
+    <Compile Include="Styles\AbstractTheme.cs" />
+    <Compile Include="Helper\Template.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Styles\StyleIds.cs" />
+    <Compile Include="XML\Indentation.cs" />
+    <Compile Include="XML\Outline.cs" />
+    <Compile Include="Section\PageSize.cs" />
+    <Compile Include="Section\SectionPropertyPart.cs" />
+    <Compile Include="XML\RunFont.cs" />
+    <Compile Include="XML\XStdRun.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\charts.docx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Cardan.Data\Cardan.Data\Cardan.Data.csproj">
+      <Project>{aca979aa-1925-439a-a89c-932cca6b2612}</Project>
+      <Name>Cardan.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

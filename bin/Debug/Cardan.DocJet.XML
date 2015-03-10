@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cardan.DocJet</name>
+    </assembly>
+    <members>
+        <member name="M:Cardan.DocJet.XML.JetElement.#ctor(System.Xml.Linq.XName)">
+            <summary>
+            Creates a new element from scratch
+            </summary>
+            <param name="xName">the name of the element to create</param>
+        </member>
+        <member name="M:Cardan.DocJet.XML.JetElement.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Wraps an already existing element
+            </summary>
+            <param name="el">the element to wrap</param>
+        </member>
+        <member name="M:Cardan.DocJet.XML.JetElement.Forge(System.Xml.Linq.XName[])">
+            <summary>
+            If element chain does not exist, this will forge a chain and make it exist.
+            </summary>
+            <param name="el">the starting element of the chain (already exists)</param>
+            <param name="descendantOrder">the descendant XNames to be added to the chain if they don't already exist</param>
+        </member>
+        <member name="P:Cardan.DocJet.XML.JetElement.WrappedElement">
+            <summary>
+            Return the underlying wrapped element
+            </summary>
+        </member>
+        <member name="T:Cardan.DocJet.Chart.XPlot">
+            <summary>
+            A class to encapsulte the functionality of ScatterChart, ColumnChart, etc
+            </summary>
+        </member>
+        <member name="T:Cardan.DocJet.Doc">
+            <summary>
+            The doc is the document held in memory for manipulation
+            </summary>
+        </member>
+        <member name="M:Cardan.DocJet.Doc.#ctor">
+            <summary>
+            All docs are initialized with the BasicSimple theme
+            </summary>
+        </member>
+        <member name="M:Cardan.DocJet.Doc.ImportStyles(System.String)">
+            <summary>
+            Imports the styles from a separate word document. This is used if user created styles are defined and these
+            are to be used in document generation.
+            </summary>
+            <param name="docXStylePath">the path to the styled docx</param>
+            <example>
+            <code>
+                    var dj = new Cardan.DocJet.Doc();
+                    dj.ImportStyles(@"..\BWCapitalized.docx");
+            </code>
+            </example>
+        </member>
+        <member name="M:Cardan.DocJet.Doc.AppendParagraph(Cardan.DocJet.Styles.StyleIds,System.String)">
+            <summary>
+            Appends a piece of text with a certian style id. This can be headers, comments, etc. See the StyleId enum
+            for options in the id.
+            </summary>
+            <param name="id">the style id of this paragraph</param>
+            <param name="text">the text of the paragraph</param>
+            <example>
+            <code>
+                    var dj = new Cardan.DocJet.Doc();
+                    dj.AppendParagraph(StyleIds.Title, "The Greatest Title In the World!");
+            </code>
+            </example>
+        </member>
+        <member name="M:Cardan.DocJet.Doc.AppendList(Cardan.DocJet.Data.LNode[])">
+            <summary>
+            Appends a list of items to the document
+            </summary>
+            <param name="items">a hierarchical chain of nodes to form the list</param>
+        </member>
+        <member name="M:Cardan.DocJet.Doc.AppendList(Cardan.DocJet.Helper.ListFormat,Cardan.DocJet.Data.LNode[])">
+            <summary>
+            Appends a list of items to the document
+            </summary>
+            <param name="format">the format in which to build the list (numbers, bullets, etc)</param>
+            <param name="items">a hierarchical chain of nodes to form the list</param>
+        </member>
+        <member name="M:Cardan.DocJet.Doc.Append(System.Xml.Linq.XElement)">
+            <summary>
+            Appends the xelement to the end of the doc
+            </summary>
+            <param name="content">the content to insert</param>
+        </member>
+        <member name="M:Cardan.DocJet.Doc.Append(System.Collections.Generic.IEnumerable{System.Xml.Linq.XElement})">
+            <summary>
+            Appends the list of xelements to the end of the doc
+            </summary>
+            <param name="content">the content to insert</param>
+        </member>
+        <member name="M:Cardan.DocJet.Doc.SaveAs(System.String)">
+            <summary>
+            Saves the doc from memory to a file
+            </summary>
+            <param name="outputFile">the path of the file to save the doc</param>
+        </member>
+        <member name="M:Cardan.DocJet.Doc.PresaveProcess">
+            <summary>
+            Adds a section properties element in case the last paragraph only exists to define a section.
+            </summary>
+        </member>
+        <member name="M:Cardan.DocJet.Doc.DefineStyleIfNotExist(System.String)">
+            <summary>
+            Creates a style in the stylepart of the document if it does not already exist there.
+            </summary>
+            <param name="styleId">the style id to create if it does not exist</param>
+        </member>
+        <member name="P:Cardan.DocJet.Doc.Theme">
+            <summary>
+            The theme that holds the styles for the document.
+            </summary>
+        </member>
+        <member name="M:Cardan.DocJet.Extensions.NumberingDefPartExtensions.AddNewNumListType(DocumentFormat.OpenXml.Packaging.NumberingDefinitionsPart,Cardan.DocJet.Helper.ListFormat)">
+            <summary>
+            Adds the correct format xml for the number definitions part and returns the numId to be referenced in the paragraph
+            </summary>
+            <param name="part">the part to be filled</param>
+            <param name="format">the format of the numbering</param>
+            <returns>the num id to be referenced by the paragraph</returns>
+        </member>
+        <member name="M:Cardan.DocJet.Extensions.NumberingDefPartExtensions.AppendNewNumToRoot(System.String,System.Xml.Linq.XElement,System.Boolean)">
+            <summary>
+            Adds a new W:num to end of root.
+            </summary>
+            <param name="abstactNumId">the abstractId to reference in the num</param>
+            <param name="root">the root of the numberingPartDef</param>
+            <returns>the string id of the new num</returns>
+        </member>
+        <member name="M:Cardan.DocJet.Helper.IdGenerator.NextId">
+            <summary>
+            Generates a number for the next id.
+            </summary>
+            <returns>the next id</returns>
+        </member>
+        <member name="P:Cardan.DocJet.Helper.XConverter.A4FullNormalP_EMU">
+            <summary>
+            A4 page portrait with 1" margins
+            </summary>
+        </member>
+        <member name="P:Cardan.DocJet.Helper.XConverter.A4FullNormalP_Points">
+            <summary>
+            A4 page portrait with 1" margins
+            </summary>
+        </member>
+        <member name="T:Cardan.DocJet.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Cardan.DocJet.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Cardan.DocJet.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Cardan.DocJet.Properties.Resources.charts">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:Cardan.DocJet.Properties.Resources.ScatterBones">
+            <summary>
+              Looks up a localized string similar to &lt;c:chartSpace xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:c14=&quot;http://schemas.microsoft.com/office/drawing/2007/8/2/chart&quot; xmlns:c=&quot;http://schemas.openxmlformats.org/drawingml/2006/chart&quot; xmlns:a=&quot;http://schemas.openxmlformats.org/drawingml/2006/main&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;&gt;
+             &lt;c:date1904 val=&quot;0&quot; /&gt;
+             &lt;c:lang val=&quot;en-US&quot; /&gt;
+             &lt;c:roundedCorners val=&quot;0&quot; /&gt;
+             &lt;mc:AlternateContent xmlns:mc=&quot;http://schemas.openxmlformats. [rest of string was truncated]&quot;;.
+            </summary>
+        </member>
+        <member name="P:Cardan.DocJet.Properties.Resources.String1">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="T:Cardan.DocJet.Helper.NodeFormat">
+            <summary>
+            A class to help format list items
+            </summary>
+        </member>
+        <member name="P:Cardan.DocJet.Helper.NodeFormat.LevelStringFormat">
+            <summary>
+            This exists to create scenarios where the subitems can contain the letter or number from the parent
+            (eg 1.A). You do this by a percent sign followed by the node level "n". %n is the default (%1 for first 
+            level items, %2 for second level items, etc. You can get fancy with something like %1.%2 to do the 1.A
+            example.
+            </summary>
+        </member>
+        <member name="F:Cardan.DocJet.XML.NumberFormat.CardinalText">
+            <summary>
+            Cardinal Text (One, Two Three)
+            </summary>
+        </member>
+        <member name="F:Cardan.DocJet.XML.NumberFormat.OrdinalText">
+            <summary>
+            Ordinal Text (First, Second, Third)
+            </summary>
+        </member>
+        <member name="F:Cardan.DocJet.XML.NumberFormat.Ordinal">
+            <summary>
+            Ordinal (1st, 2nd, 3rd)
+            </summary>
+        </member>
+        <member name="F:Cardan.DocJet.XML.NumberFormat.LowerLetter">
+            <summary>
+            Lower Letter (a, b, c)
+            </summary>
+        </member>
+        <member name="F:Cardan.DocJet.XML.NumberFormat.UpperLetter">
+            <summary>
+            Upper Letter (A, B, C)
+            </summary>
+        </member>
+        <member name="F:Cardan.DocJet.XML.NumberFormat.LowerRoman">
+            <summary>
+            Lower Roman (i, ii, iii)
+            </summary>
+        </member>
+        <member name="F:Cardan.DocJet.XML.NumberFormat.UpperRoman">
+            <summary>
+            Upper Roman (I, II, III)
+            </summary>
+        </member>
+        <member name="F:Cardan.DocJet.XML.NumberFormat.DecimalZero">
+            <summary>
+            Decimal Zero (01, 02, 03)
+            </summary>
+        </member>
+        <member name="F:Cardan.DocJet.XML.NumberFormat.Decimal">
+            <summary>
+            Decimal (1, 2, 3)
+            </summary>
+        </member>
+        <member name="F:Cardan.DocJet.XML.NumberFormat.Bullet">
+            <summary>
+            Bullets
+            </summary>
+        </member>
+        <member name="T:Cardan.DocJet.Helper.Template">
+            <summary>
+            This reads the resource file and can pull content controls out by name to create "templates"
+            </summary>
+        </member>
+    </members>
+</doc>
